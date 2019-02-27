@@ -1,0 +1,48 @@
+* Purpose
+A temporary repository to figure out how to add libsodium as a bazel dependency using the rules_foreign_cc archive
+
+* Build environment
+OS: gnetoo linux
+make: gmake, cmake
+
+would like to eventually target other platforms such as Android / ios
+
+* How am I building
+see [[file+emacs:.dir-locals.el][dir locals]]
+
+* Current build output
+#+BEGIN_EXAMPLE
+-*- mode: compilation; default-directory: "~/dev/bazelLibsodiumTest/" -*-
+Compilation started at Fri Feb 22 06:17:50
+
+bazel build //src:test_libsodium
+Starting local Bazel server and connecting to it...
+INFO: Invocation ID: 8df3d864-0c15-488f-80de-528d9ac3480c
+Loading: 
+Loading: 0 packages loaded
+Loading: 0 packages loaded
+Loading: 0 packages loaded
+INFO: SHA256 (https://github.com/bazelbuild/rules_foreign_cc/archive/master.zip) = 04f91959f71cdf70151455d9af63579aa80b613bdd67f51df686ba0cb2f23183
+Analyzing: target //src:test_libsodium (2 packages loaded)
+Analyzing: target //src:test_libsodium (3 packages loaded, 0 targets configured)
+DEBUG: /home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/org_libsodium/BUILD.bazel:1:1: we have loaded the libsodium build file 2
+ERROR: /home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/org_libsodium/BUILD.bazel:5:1: in configure_make rule @org_libsodium//:libsodium_configure: 
+Traceback (most recent call last):
+	File "/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/org_libsodium/BUILD.bazel", line 5
+		configure_make(name = 'libsodium_configure')
+	File "/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/rules_foreign_cc/tools/build_defs/configure.bzl", line 29, in _configure_make
+		cc_external_rule_impl(ctx, attrs)
+	File "/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/foreign_cc_impl/framework.bzl", line 209, in cc_external_rule_impl
+		_define_out_cc_info(ctx, attrs, inputs, outputs)
+	File "/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/foreign_cc_impl/framework.bzl", line 626, in _define_out_cc_info
+		cc_common.create_compilation_context(ctx = ctx, headers = depset([outpu...]), <2 more arguments>)
+the C++ Starlark API is for the time being only allowed for rules in ''; but this is defined in 'tools/build_defs'. You can try it out by passing --experimental_cc_skylark_api_enabled_packages=<list of packages>. Beware that we will be making breaking changes to this API without prior warning.
+ERROR: Analysis of target '//src:test_libsodium' failed; build aborted: Analysis of target '@org_libsodium//:libsodium_configure' failed; build aborted
+INFO: Elapsed time: 5.053s
+INFO: 0 processes.
+FAILED: Build did NOT complete successfully (11 packages loaded, 68 targets configured)
+FAILED: Build did NOT complete successfully (11 packages loaded, 68 targets configured)
+
+Compilation exited abnormally with code 1 at Fri Feb 22 06:17:56
+
+#+END_EXAMPLE
