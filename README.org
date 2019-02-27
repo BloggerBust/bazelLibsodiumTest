@@ -13,36 +13,44 @@ see [[file+emacs:.dir-locals.el][dir locals]]
 * Current build output
 #+BEGIN_EXAMPLE
 -*- mode: compilation; default-directory: "~/dev/bazelLibsodiumTest/" -*-
-Compilation started at Fri Feb 22 06:17:50
+Compilation started at Sat Feb 23 11:28:27
 
-bazel build //src:test_libsodium
+TMPDIR=/home/dustfinger/dev/tmp bazel build --experimental_cc_skylark_api_enabled_packages=@rules_foreign_cc//tools/build_defs,tools/build_defs,@foreign_cc_impl //src:main --verbose_failures --sandbox_debug
 Starting local Bazel server and connecting to it...
-INFO: Invocation ID: 8df3d864-0c15-488f-80de-528d9ac3480c
+INFO: Invocation ID: 95542a65-b57e-48f3-b33c-d6d4b4273056
 Loading: 
 Loading: 0 packages loaded
 Loading: 0 packages loaded
-Loading: 0 packages loaded
 INFO: SHA256 (https://github.com/bazelbuild/rules_foreign_cc/archive/master.zip) = 04f91959f71cdf70151455d9af63579aa80b613bdd67f51df686ba0cb2f23183
-Analyzing: target //src:test_libsodium (2 packages loaded)
-Analyzing: target //src:test_libsodium (3 packages loaded, 0 targets configured)
-DEBUG: /home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/org_libsodium/BUILD.bazel:1:1: we have loaded the libsodium build file 2
-ERROR: /home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/org_libsodium/BUILD.bazel:5:1: in configure_make rule @org_libsodium//:libsodium_configure: 
-Traceback (most recent call last):
-	File "/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/org_libsodium/BUILD.bazel", line 5
-		configure_make(name = 'libsodium_configure')
-	File "/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/rules_foreign_cc/tools/build_defs/configure.bzl", line 29, in _configure_make
-		cc_external_rule_impl(ctx, attrs)
-	File "/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/foreign_cc_impl/framework.bzl", line 209, in cc_external_rule_impl
-		_define_out_cc_info(ctx, attrs, inputs, outputs)
-	File "/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/external/foreign_cc_impl/framework.bzl", line 626, in _define_out_cc_info
-		cc_common.create_compilation_context(ctx = ctx, headers = depset([outpu...]), <2 more arguments>)
-the C++ Starlark API is for the time being only allowed for rules in ''; but this is defined in 'tools/build_defs'. You can try it out by passing --experimental_cc_skylark_api_enabled_packages=<list of packages>. Beware that we will be making breaking changes to this API without prior warning.
-ERROR: Analysis of target '//src:test_libsodium' failed; build aborted: Analysis of target '@org_libsodium//:libsodium_configure' failed; build aborted
-INFO: Elapsed time: 5.053s
-INFO: 0 processes.
-FAILED: Build did NOT complete successfully (11 packages loaded, 68 targets configured)
-FAILED: Build did NOT complete successfully (11 packages loaded, 68 targets configured)
+Analyzing: target //src:main (2 packages loaded)
+Analyzing: target //src:main (3 packages loaded, 0 targets configured)
+INFO: Analysed target //src:main (14 packages loaded, 624 targets configured).
+INFO: Found 1 target...
+bazel: Entering directory `/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/execroot/com_github_bloggerbust_bazelLibsodiumTest/'
+[0 / 8] [-----] BazelWorkspaceStatusAction stable-status.txt ... (3 actions, 0 running)
+[6 / 12] CcConfigureMakeRule libsodium_configure/include; 1s linux-sandbox
+[6 / 12] CcConfigureMakeRule libsodium_configure/include; 11s linux-sandbox
+[6 / 12] CcConfigureMakeRule libsodium_configure/include; 33s linux-sandbox
+[6 / 12] CcConfigureMakeRule libsodium_configure/include; 41s linux-sandbox
+INFO: From CcConfigureMakeRule libsodium_configure/include:
 
-Compilation exited abnormally with code 1 at Fri Feb 22 06:17:56
+######################################
+# A WHOLE BUNCH OF OUTPUT OMITTED HERE
+######################################
 
+CMake Error: The source directory "/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/sandbox/linux-sandbox/2/execroot/com_github_bloggerbust_bazelLibsodiumTest/external/org_libsodium" does not appear to contain CMakeLists.txt.
+Specify --help for usage, or press the help button on the CMake GUI.
+
+_____ END BUILD LOGS _____
+rules_foreign_cc: Build script location: bazel-out/k8-fastbuild/genfiles/libsodium_make/logs/CMake_script.sh
+rules_foreign_cc: Build log location: bazel-out/k8-fastbuild/genfiles/libsodium_make/logs/CMake.log
+
+bazel: Leaving directory `/home/dustfinger/.cache/bazel/_bazel_dustfinger/9eac64b3fc007e990a2b4d34b02baad6/execroot/com_github_bloggerbust_bazelLibsodiumTest/'
+Target //src:main failed to build
+INFO: Elapsed time: 54.355s, Critical Path: 49.14s
+INFO: 1 process: 1 linux-sandbox.
+FAILED: Build did NOT complete successfully
+FAILED: Build did NOT complete successfully
+
+Compilation exited abnormally with code 1 at Sat Feb 23 11:29:21
 #+END_EXAMPLE
