@@ -3,8 +3,12 @@
 
 using namespace std;
                    
-TestLibSodium::TestLibSodium(){
+TestLibsodium::TestLibsodium(){
+
   if(sodium_init() < 0) {
-    cout << "panic! the library couldn't be initialized, it is not safe to use" 
-      }
+    cout << "panic! the library couldn't be initialized, it is not safe to use";
+  }
+  else{
+    cout << "W00t! the libsodium library has been initialized";
+  }
 }
