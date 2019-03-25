@@ -1,1 +1,5 @@
+* What is this?
 A simple c++ bazel example project with libsodium as a dependency.
+
+* Related Blog Posts
+- [[https://bloggerbust.ca/post/adding-a-dependency-based-on-autotools-to-a-bazel-project/][Adding a dependency based on autotools to a bazel project]]

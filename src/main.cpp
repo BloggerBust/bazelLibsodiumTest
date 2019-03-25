@@ -1,10 +1,10 @@
 #include <iostream>
-#include "lib/test.h"
+#include "lib/TestLibsodium.h"
 
 using namespace std;
 
 int main(){
-  cout << "going to initialize libsodium, wish me luck" << endl;
+  cout << "going to initialize Libsodium, wish me luck" << endl;
   TestLibsodium test;
   return 0;
 }
